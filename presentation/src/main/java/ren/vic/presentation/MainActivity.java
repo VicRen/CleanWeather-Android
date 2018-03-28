@@ -19,12 +19,11 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import butterknife.BindView;
-import ren.vic.cleanweather.R;
 import ren.vic.presentation.common.BaseActionBarActivity;
 
 public class MainActivity extends BaseActionBarActivity {
 
-    @BindView(R.id.tvTesting)
+    @BindView(R2.id.tvTesting)
     TextView mTvTesting;
 
     @Override

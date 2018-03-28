@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
-import ren.vic.cleanweather.R;
+import ren.vic.presentation.R;
 import ren.vic.presentation.navigation.Navigator;
 
 public abstract class BaseActionBarActivity extends DaggerAppCompatActivity {
