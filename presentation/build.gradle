@@ -2,47 +2,49 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 26
+    def globalConfiguration = rootProject.extensions.getByName("ext")
 
-
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+        versionCode globalConfiguration.getAt("androidVersionCode")
+        versionName globalConfiguration.getAt("androidVersionName")
+        testInstrumentationRunner globalConfiguration.getAt("testInstrumentationRunner")
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     def presentationDependencies = rootProject.ext.presentationDependencies
     def presentationTestDependencies = rootProject.ext.presentationTestDependencies
     def developmentDependencies = rootProject.ext.developmentDependencies
-
     implementation presentationDependencies.dagger
     annotationProcessor presentationDependencies.daggerCompiler
     implementation presentationDependencies.daggerAndroid
     implementation presentationDependencies.daggerAndroidSpt
     annotationProcessor presentationDependencies.daggerProcessor
+    implementation presentationDependencies.rxJava
+    implementation presentationDependencies.rxAndroid
     implementation presentationDependencies.butterKnife
     annotationProcessor presentationDependencies.butterKnifeAP
     implementation presentationDependencies.appcompatV7
     implementation presentationDependencies.recyclerView
     implementation presentationDependencies.constraintLayout
-
     testImplementation presentationTestDependencies.junit
-    implementation project(':domain')
+    implementation developmentDependencies.leakCanary
     implementation project(':data')
+    implementation project(':domain')
 }

@@ -6,6 +6,5 @@ public class Navigator {
 
     @Inject
     Navigator() {
-
     }
 }
