@@ -6,7 +6,7 @@ import ren.vic.domain.entity.Weather;
 import ren.vic.domain.interactor.DefaultObserver;
 import ren.vic.domain.interactor.WeatherGetToday;
 
-public class MainPresenter implements MainContract.Presetner {
+public class MainPresenter implements MainContract.Presenter {
 
     private final WeatherGetToday mWeatherGetToday;
     private MainContract.View mView;
@@ -19,7 +19,6 @@ public class MainPresenter implements MainContract.Presetner {
     @Override
     public void setView(MainContract.View view) {
         mView = view;
-        mWeatherGetToday.execute(new WeatherObserver(), WeatherGetToday.Param.forCityName("ningbo"));
     }
 
     @Override
@@ -32,6 +31,11 @@ public class MainPresenter implements MainContract.Presetner {
 
     @Override
     public void destroy() {
+    }
+
+    @Override
+    public void go() {
+        mWeatherGetToday.execute(new WeatherObserver(), WeatherGetToday.Param.forCityName(mView.getText()));
     }
 
     private final class WeatherObserver extends DefaultObserver<Weather> {

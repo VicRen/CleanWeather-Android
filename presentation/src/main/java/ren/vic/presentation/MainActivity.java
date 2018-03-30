@@ -1,6 +1,7 @@
 package ren.vic.presentation;
 
 import android.util.Base64;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -13,12 +14,16 @@ import java.util.TreeMap;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import ren.vic.presentation.common.BaseActionBarActivity;
 
 public class MainActivity extends BaseActionBarActivity implements MainContract.View {
 
     @BindView(R2.id.tvTesting)
     TextView mTvTesting;
+
+    @BindView(R2.id.editText)
+    EditText mEdtText;
 
     @Inject
     MainPresenter mPresenter;
@@ -35,8 +40,18 @@ public class MainActivity extends BaseActionBarActivity implements MainContract.
     }
 
     @Override
+    public String getText() {
+        return mEdtText.getText().toString().trim();
+    }
+
+    @Override
     public void onShowText(String text) {
         mTvTesting.setText(text);
+    }
+
+    @OnClick(R2.id.button)
+    public void onGo() {
+        mPresenter.go();
     }
 
     /**

@@ -7,9 +7,13 @@ public class MainContract {
 
     interface View extends BaseView {
 
+        String getText();
+
         void onShowText(String text);
     }
 
-    interface Presetner extends BasePresenter<View> {
+    interface Presenter extends BasePresenter<View> {
+
+        void go();
     }
 }
