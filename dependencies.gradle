@@ -6,15 +6,15 @@ allprojects {
 
 ext {
     // Android
-    androidBuildToolsVersion = "27.0.1"
+    androidBuildToolsVersion = "27.0.3"
     androidMinSdkVersion = 21
     androidTargetSdkVersion = 27
     androidCompileSdkVersion = 27
 
     // Support
     constraintLayoutVersion = '1.0.2'
-    appcompatV7Version = '27.0.2'
-    recyclerViewVersion = '27.0.2'
+    appcompatV7Version = '27.1.0'
+    recyclerViewVersion = '27.1.0'
 
     // Libraries
     daggerVersion = '2.12'
