@@ -14,6 +14,7 @@ import java.util.TreeMap;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import ren.vic.data.entity.mapper.WeatherEntityMapper;
 import ren.vic.data.web.RetrofitInstance;
 import ren.vic.data.web.WeatherApi;
 import ren.vic.domain.entity.Weather;
@@ -21,32 +22,37 @@ import ren.vic.domain.repository.WeatherRepository;
 
 public class WeatherDataRepository implements WeatherRepository {
 
+    private static final String HE_WEATHER_USERNAME = "HE1712160911301054";
+    private static final String HE_WEATHER_SECRET = "18759f9478b149fc9f5898fc4569bba0";
+
     private final Context context;
     private final WeatherApi weatherApi;
+    private final WeatherEntityMapper weatherEntityMapper;
 
     @Inject
-    WeatherDataRepository(Context context, RetrofitInstance retrofitInstance) {
+    WeatherDataRepository(Context context, RetrofitInstance retrofitInstance,
+                          WeatherEntityMapper weatherEntityMapper) {
         this.context = context;
         this.weatherApi = retrofitInstance.getWeatherApi();
+        this.weatherEntityMapper = weatherEntityMapper;
     }
 
     @Override
     public Observable<Weather> weatherByCityName(String cityName) {
+        long time = System.currentTimeMillis() / 1000;
         Map<String, String> map = new HashMap<>();
-        map.put("username", "HE1712160911301054");
+        map.put("username", HE_WEATHER_USERNAME);
         map.put("location", cityName);
-        map.put("t", "1515815034");
+        map.put("t", String.valueOf(time));
         try {
-            String sign = getSignature(map, "18759f9478b149fc9f5898fc4569bba0");
+            String sign = getSignature(map, HE_WEATHER_SECRET);
             map.put("sign", sign);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return weatherApi.getCurrentWeather(map)
                 .flatMap(weatherEntity -> Observable.create(e -> {
-                    Weather weather = new Weather();
-                    weather.condTxt = weatherEntity.getWeatherNow().condTxt;
-                    e.onNext(weather);
+                    e.onNext(weatherEntityMapper.transform(weatherEntity));
                     e.onComplete();
                 }));
     }
