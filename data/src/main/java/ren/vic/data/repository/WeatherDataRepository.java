@@ -51,8 +51,9 @@ public class WeatherDataRepository implements WeatherRepository {
             e.printStackTrace();
         }
         return weatherApi.getCurrentWeather(map)
-                .flatMap(weatherEntity -> Observable.create(e -> {
-                    e.onNext(weatherEntityMapper.transform(weatherEntity));
+                .map(weatherEntityMapper::transform)
+                .flatMap(weather -> Observable.create(e -> {
+                    e.onNext(weather);
                     e.onComplete();
                 }));
     }
