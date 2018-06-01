@@ -19,6 +19,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GetWeatherByLocationTest {
@@ -56,8 +57,7 @@ public class GetWeatherByLocationTest {
 
         verify(locationRepository).currentLocation();
         verifyNoMoreInteractions(locationRepository);
-        verifyNoMoreInteractions(threadExecutor);
-        verifyNoMoreInteractions(postExecutionThread);
+        verifyZeroInteractions(threadExecutor, postExecutionThread);
     }
 
     @Test
@@ -72,16 +72,19 @@ public class GetWeatherByLocationTest {
         assertThat(testObserver.nextValue).isEqualTo(fakeWeather);
         assertThat(testObserver.completeCount).isEqualTo(1);
         assertThat(testObserver.errorCount).isZero();
-        verifyNoMoreInteractions(locationRepository);
-        verifyNoMoreInteractions(weatherRepository);
-        verifyNoMoreInteractions(threadExecutor);
-        verifyNoMoreInteractions(postExecutionThread);
+        verifyNoMoreInteractions(locationRepository, weatherRepository);
+        verifyZeroInteractions(threadExecutor, postExecutionThread);
     }
 
     @Test
     public void testFailForLocationUnavailable() {
         given(locationRepository.currentLocation()).willReturn(Observable.error(new NullPointerException()));
         getWeatherByLocation.buildUseCaseObservable(null).subscribe(testObserver);
+
+        verify(locationRepository).currentLocation();
+        assertThat(testObserver.errorCount).isEqualTo(1);
+        verifyNoMoreInteractions(locationRepository);
+        verifyZeroInteractions(threadExecutor, postExecutionThread, weatherRepository);
     }
 
     private static class TestDisposableObserver extends DisposableObserver<Weather> {

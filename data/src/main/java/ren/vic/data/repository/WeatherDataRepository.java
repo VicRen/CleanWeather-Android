@@ -17,6 +17,7 @@ import io.reactivex.Observable;
 import ren.vic.data.entity.mapper.WeatherEntityMapper;
 import ren.vic.data.web.RetrofitInstance;
 import ren.vic.data.web.WeatherApi;
+import ren.vic.domain.entity.LocationData;
 import ren.vic.domain.entity.Weather;
 import ren.vic.domain.repository.WeatherRepository;
 
@@ -56,6 +57,11 @@ public class WeatherDataRepository implements WeatherRepository {
                     e.onNext(weather);
                     e.onComplete();
                 }));
+    }
+
+    @Override
+    public Observable<Weather> weatherByLocation(LocationData fakeLocationData) {
+        return null;
     }
 
     private Observable<String> signature(Map<String, String> params, String secret) {
