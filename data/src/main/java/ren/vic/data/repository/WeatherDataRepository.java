@@ -14,6 +14,7 @@ import java.util.TreeMap;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
 import ren.vic.data.entity.mapper.WeatherEntityMapper;
 import ren.vic.data.web.RetrofitInstance;
 import ren.vic.data.web.WeatherApi;
@@ -40,27 +41,27 @@ public class WeatherDataRepository implements WeatherRepository {
 
     @Override
     public Observable<Weather> weatherByCityName(String cityName) {
-        long time = System.currentTimeMillis() / 1000;
-        Map<String, String> map = new HashMap<>();
-        map.put("username", HE_WEATHER_USERNAME);
-        map.put("location", cityName);
-        map.put("t", String.valueOf(time));
-        try {
-            String sign = getSignature(map, HE_WEATHER_SECRET);
-            map.put("sign", sign);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return weatherApi.getCurrentWeather(map)
-                .map(weatherEntityMapper::transform)
-                .flatMap(weather -> Observable.create(e -> {
-                    e.onNext(weather);
-                    e.onComplete();
-                }));
+        return Observable.create((ObservableOnSubscribe<Map<String, String>>) emitter -> {
+            long time = System.currentTimeMillis() / 1000;
+            Map<String, String> map = new HashMap<>();
+            map.put("username", HE_WEATHER_USERNAME);
+            map.put("location", cityName);
+            map.put("t", String.valueOf(time));
+            try {
+                String sign = getSignature(map, HE_WEATHER_SECRET);
+                map.put("sign", sign);
+                emitter.onNext(map);
+                emitter.onComplete();
+            } catch (IOException e) {
+                e.printStackTrace();
+                emitter.onError(e);
+            }
+        }).flatMap(weatherApi::getCurrentWeather)
+                .map(weatherEntityMapper::transform);
     }
 
     @Override
-    public Observable<Weather> weatherByLocation(LocationData fakeLocationData) {
+    public Observable<Weather> weatherByLocation(LocationData locationData) {
         return null;
     }
 
