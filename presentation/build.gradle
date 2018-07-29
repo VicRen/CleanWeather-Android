@@ -43,6 +43,7 @@ dependencies {
     implementation presentationDependencies.appcompatV7
     implementation presentationDependencies.recyclerView
     implementation presentationDependencies.constraintLayout
+    implementation presentationDependencies.androidAnnotations
     testImplementation presentationTestDependencies.junit
     androidTestImplementation presentationTestDependencies.espresso
     androidTestImplementation presentationTestDependencies.testRules
