@@ -39,9 +39,9 @@ ext {
     assertJVersion = '3.10.0'
     mockitoVersion = '2.20.0'
     dexmakerVersion = '1.0.3'
-    espressoVersion = '3.0.1'
-    testRulesVersion = '1.0'
-    testRunnerVersion = '1.0'
+    espressoVersion = '3.0.2'
+    testRulesVersion = '1.0.2'
+    testRunnerVersion = '1.0.2'
 
     // Development
     leakCanaryVersion = '1.6.1'
