@@ -6,9 +6,9 @@ import ren.vic.presentation.MainActivity;
 import ren.vic.presentation.internal.di.scope.ActivityScoped;
 
 @Module
-public abstract class BindingActivityModule {
+public abstract class ActivityBindingModule {
 
     @ActivityScoped
-    @ContributesAndroidInjector(modules = BlankActivityModule.class)
+    @ContributesAndroidInjector
     abstract MainActivity mainActivity();
 }

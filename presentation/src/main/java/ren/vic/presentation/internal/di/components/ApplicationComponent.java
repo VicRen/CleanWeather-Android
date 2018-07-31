@@ -10,13 +10,13 @@ import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
 import dagger.android.support.AndroidSupportInjectionModule;
 import ren.vic.presentation.internal.di.modules.ApplicationModule;
-import ren.vic.presentation.internal.di.modules.BindingActivityModule;
+import ren.vic.presentation.internal.di.modules.ActivityBindingModule;
 import ren.vic.presentation.internal.di.modules.WeatherRepositoryModule;
 
 @Singleton
 @Component(modules = {
         ApplicationModule.class,
-        BindingActivityModule.class,
+        ActivityBindingModule.class,
         WeatherRepositoryModule.class,
         AndroidSupportInjectionModule.class
 })

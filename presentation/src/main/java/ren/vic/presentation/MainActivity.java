@@ -27,7 +27,7 @@ public class MainActivity extends BaseActionBarActivity implements MainContract.
 
     @Override
     protected void initData() {
-        mTvTesting.setText("哈哈哈");
+        mTvTesting.setText("Hello world");
         mPresenter.setView(this);
     }
 
