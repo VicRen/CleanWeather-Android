@@ -5,22 +5,23 @@
     android:layout_height="match_parent">
 
     <android.support.design.button.MaterialButton
-        android:id="@+id/button_enter_city"
+        android:id="@+id/button_start_auto_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_normal"
-        android:text="@string/enter_city"
+        android:text="@string/start"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <android.support.design.button.MaterialButton
-        android:id="@+id/button_auto_location"
+    <TextView
+        android:id="@+id/tvTesting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_normal"
-        android:text="@string/auto_location"
+        android:text="@string/enter_city_to_get_weather"
+        android:textSize="@dimen/textSizeXXLarge"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_enter_city" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

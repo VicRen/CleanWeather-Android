@@ -7,7 +7,7 @@ import ren.vic.presentation.MainPresenter;
 import ren.vic.presentation.internal.di.scope.ActivityScoped;
 
 @Module
-public abstract class MainActivityModule {
+abstract class MainActivityModule {
 
     @ActivityScoped
     @Binds

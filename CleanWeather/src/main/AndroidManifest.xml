@@ -3,6 +3,8 @@
     package="ren.vic.cleanweather">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name="ren.vic.presentation.CleanApplication"
@@ -19,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name="ren.vic.presentation.entercity.EnterCityActivity" />
+        <activity android:name="ren.vic.presentation.autolocation.AutoLocationActivity" />
     </application>
 
 </manifest>

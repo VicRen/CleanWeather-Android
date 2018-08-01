@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import javax.inject.Inject;
 
+import ren.vic.presentation.autolocation.AutoLocationActivity;
 import ren.vic.presentation.entercity.EnterCityActivity;
 
 public class Navigator {
@@ -16,6 +17,12 @@ public class Navigator {
     public void navigateToEnterCity(Context context) {
         if (context != null) {
             context.startActivity(new Intent(context, EnterCityActivity.class));
+        }
+    }
+
+    public void navigateToAutoLocation(Context context) {
+        if (context != null) {
+            context.startActivity(new Intent(context, AutoLocationActivity.class));
         }
     }
 }

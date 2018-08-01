@@ -31,4 +31,9 @@ public class MainPresenter implements MainContract.Presenter {
     public void enterCity() {
         mView.navigateToEnterCity();
     }
+
+    @Override
+    public void autoLocation() {
+        mView.navigateToAutoLocation();
+    }
 }

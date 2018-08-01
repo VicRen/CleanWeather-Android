@@ -25,8 +25,18 @@ public class MainActivity extends BaseActionBarActivity implements MainContract.
         mNavigator.navigateToEnterCity(this);
     }
 
+    @Override
+    public void navigateToAutoLocation() {
+        mNavigator.navigateToAutoLocation(this);
+    }
+
     @OnClick(R2.id.button_enter_city)
     public void onEnterCity() {
         mPresenter.enterCity();
+    }
+
+    @OnClick(R2.id.button_auto_location)
+    public void onAutoLocation() {
+        mPresenter.autoLocation();
     }
 }

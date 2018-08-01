@@ -17,6 +17,7 @@ public class WeatherEntityMapper {
         Weather weather = null;
         if (weatherEntity != null) {
             weather = new Weather();
+            weather.location = weatherEntity.getWeatherBasic().location;
             weather.condTxt = weatherEntity.getWeatherNow().condTxt;
         }
         return weather;

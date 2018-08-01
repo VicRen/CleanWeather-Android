@@ -1,21 +1,19 @@
-package ren.vic.presentation.entercity;
+package ren.vic.presentation.autolocation;
 
 import ren.vic.presentation.common.BasePresenter;
 import ren.vic.presentation.common.BaseView;
 
-public class EnterCityContract {
+public class AutoLocationContract {
 
     public interface View extends BaseView {
 
-        String getText();
+        void onShowError(String error);
 
         void onShowWeather(String location, String weather);
-
-        void onShowError(String error);
     }
 
     public interface Presenter extends BasePresenter<View> {
 
-        void go();
+        void startAutoLocation();
     }
 }

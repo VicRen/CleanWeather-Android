@@ -33,13 +33,24 @@ public class EnterCityActivity extends BaseActionBarActivity implements EnterCit
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.destroy();
+    }
+
+    @Override
     public String getText() {
         return mEdtText.getText().toString().trim();
     }
 
     @Override
-    public void onShowText(String text) {
-        mTvTesting.setText(text);
+    public void onShowWeather(String location, String weather) {
+        mTvTesting.setText(String.format(getString(R.string.weather_at_location), location, weather));
+    }
+
+    @Override
+    public void onShowError(String error) {
+        mTvTesting.setText(error);
     }
 
     @OnClick(R2.id.button)

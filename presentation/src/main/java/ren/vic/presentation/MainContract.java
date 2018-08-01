@@ -8,10 +8,14 @@ public class MainContract {
     public interface View extends BaseView {
 
         void navigateToEnterCity();
+
+        void navigateToAutoLocation();
     }
 
     public interface Presenter extends BasePresenter<View> {
 
         void enterCity();
+
+        void autoLocation();
     }
 }

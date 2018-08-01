@@ -33,7 +33,7 @@ public class EnterCityPresenter implements EnterCityContract.Presenter {
 
     @Override
     public void destroy() {
-
+        weatherGetToday.dispose();
     }
 
     @Override
@@ -45,12 +45,12 @@ public class EnterCityPresenter implements EnterCityContract.Presenter {
 
         @Override
         public void onNext(Weather weather) {
-            mView.onShowText(weather.condTxt);
+            mView.onShowWeather(weather.location, weather.condTxt);
         }
 
         @Override
         public void onError(Throwable e) {
-            mView.onShowText("Error");
+            mView.onShowError("Error");
         }
     }
 }
