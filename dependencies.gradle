@@ -12,9 +12,10 @@ ext {
     androidCompileSdkVersion = 28
 
     // Support
-    constraintLayoutVersion = '1.1.2'
-    appcompatV7Version = '27.1.1'
-    recyclerViewVersion = '27.1.1'
+    constraintVersion = '1.1.2'
+    supportVersion = '27.1.1'
+    supportBetaVersion = '28.0.0-beta01'
+    androidx = '1.0.0-beta01'
 
     // Libraries
     daggerVersion = '2.16'
@@ -30,7 +31,6 @@ ext {
     retrofitAdapterGsonVersion = '2.4.0'
     gsonVersion = '2.8.5'
     okHttpVersion = '3.11.0'
-    androidAnnotationsVersion = '27.1.1'
     arrowVersion = '1.0.0'
 
     // Testing
@@ -57,10 +57,15 @@ ext {
             rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            appcompatV7:        "com.android.support:appcompat-v7:${appcompatV7Version}",
-            recyclerView:       "com.android.support:recyclerview-v7:${recyclerViewVersion}",
-            constraintLayout:   "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
-            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}"
+            appcompatV7:        "com.android.support:appcompat-v7:${supportBetaVersion}",
+            recyclerView:       "com.android.support:recyclerview-v7:${supportBetaVersion}",
+            androidAnnotations: "com.android.support:support-annotations:${supportBetaVersion}",
+            design:             "com.android.support:design:${supportBetaVersion}",
+            constraintLayout:   "com.android.support.constraint:constraint-layout:${constraintVersion}",
+//            appcompatV7:        "androidx.appcompat:appcompat:${androidx}",
+//            recyclerView:       "androidx.recyclerview:recyclerview:${androidx}",
+//            constraintLayout:   "androidx.constraintlayout:constraintlayout:${androidx}",
+//            androidAnnotations: "androidx.annotation:annotation:${androidx}"
     ]
 
     presentationTestDependencies = [
@@ -97,7 +102,7 @@ ext {
             retrofitGson:       "com.squareup.retrofit2:converter-gson:${retrofitAdapterGsonVersion}",
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
-            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}"
+            androidAnnotations: "com.android.support:support-annotations:${supportBetaVersion}"
     ]
 
     dataTestDependencies = [

@@ -42,6 +42,7 @@ dependencies {
     annotationProcessor presentationDependencies.butterKnifeAP
     implementation presentationDependencies.appcompatV7
     implementation presentationDependencies.recyclerView
+    implementation presentationDependencies.design
     implementation presentationDependencies.constraintLayout
     implementation presentationDependencies.androidAnnotations
     testImplementation presentationTestDependencies.junit

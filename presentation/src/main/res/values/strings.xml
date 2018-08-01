@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CleanWeather</string>
+    <string name="enter_city">Enter City</string>
+    <string name="enter_city_name">Enter City Name</string>
+    <string name="go">Go</string>
+    <string name="enter_city_to_get_weather">Enter City to Get Weather</string>
 </resources>

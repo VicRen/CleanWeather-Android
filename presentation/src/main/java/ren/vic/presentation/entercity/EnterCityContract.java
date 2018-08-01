@@ -1,17 +1,19 @@
-package ren.vic.presentation;
+package ren.vic.presentation.entercity;
 
 import ren.vic.presentation.common.BasePresenter;
 import ren.vic.presentation.common.BaseView;
 
-public class MainContract {
+public class EnterCityContract {
 
     public interface View extends BaseView {
 
-        void navigateToEnterCity();
+        String getText();
+
+        void onShowText(String text);
     }
 
     public interface Presenter extends BasePresenter<View> {
 
-        void enterCity();
+        void go();
     }
 }
